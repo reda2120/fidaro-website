@@ -1,0 +1,33 @@
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: #0B0F19;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 60px;
+  background: linear-gradient(90deg,#7C3AED,#2563EB);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg,#7C3AED,#2563EB);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.card {
+  background: #111827;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 15px;
+  display: inline-block;
+  width: 250px;
+}

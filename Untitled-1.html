@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidaro | Digital Loyalty Solutions</title>
+    <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Black and Purple Dark Theme Variables */
+        :root {
+            --brand-color: #a855f7; /* Vibrant Purple */
+            --brand-hover: #9333ea; /* Darker Purple */
+            --bg-color: #000000;    /* Deep Black */
+            --card-bg: #121212;     /* Slightly lighter black for depth */
+            --text-main: #f3f4f6;   /* Off-white for readability */
+            --text-muted: #9ca3af;  /* Gray for secondary text */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--brand-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .language-toggle {
+            font-size: 14px;
+            font-weight: bold;
+            background: var(--card-bg);
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid #333;
+        }
+
+        .language-toggle span {
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 5px 8px;
+            transition: color 0.3s;
+        }
+
+        .language-toggle .active {
+            color: var(--brand-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1a0b2e 0%, var(--bg-color) 70%);
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .swipe-indicator {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--brand-color);
+            animation: bounce 2s infinite;
+        }
+
+        .swipe-indicator a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+
+        /* General Section Styles */
+        section {
+            padding: 80px 5%;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--brand-color);
+        }
+
+        /* Services Grid */
+        .services {
+            background-color: var(--bg-color);
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex: 1 1 300px;
+            max-width: 400px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--brand-color);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: var(--brand-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Target Audience Section */
+        .audience {
+            background-color: #0a0a0a;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+
+        .audience p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-muted);
+        }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid var(--brand-color);
+            color: var(--brand-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-color);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        footer h2 {
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--brand-color);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--brand-hover);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 50px 20px; }
+        }
+
+        /* Language Utility Classes */
+        .content-fr { display: none; } /* Hidden by default */
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Fidaro</div>
+        <div class="language-toggle">
+            <span id="btn-fr" onclick="setLanguage('fr')">FR</span> | <span id="btn-en" class="active" onclick="setLanguage('en')">EN</span>
+        </div>
+    </header>
+
+    <div class="lang-content content-en">
+        <section class="hero">
+            <h1>WANNA GET MORE CUSTOMERS?</h1>
+            <p>At Fidaro, we help businesses build stronger relationships with their customers through smart, digital loyalty solutions. We believe loyalty should be effortless - for both businesses and their clients.</p>
+            <div class="swipe-indicator">
+                <a href="#services-en">👇 Swipe to see our services 👇</a>
+            </div>
+        </section>
+
+        <section id="services-en" class="services">
+            <h2 class="section-title">Our Solutions</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>📱 Digital Loyalty Cards</h3>
+                    <ul>
+                        <li>Replaces traditional paper cards with a modern system integrated with Apple Wallet.</li>
+                        <li>Customers store cards on their phone; owners reward instantly by scanning a code.</li>
+                        <li>Visits convert into "stamps" for real-time progress tracking.</li>
+                        <li>No more lost cards or manual tracking.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔗 NFC Social Media</h3>
+                    <ul>
+                        <li>Instantly connect in-store customers to your digital presence.</li>
+                        <li>Custom NFC technology allows clients to pull up your social profiles with a single tap.</li>
+                        <li>Boost your online following directly from your physical location.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎧 24/7 Premium Support</h3>
+                    <ul>
+                        <li>You are never left in the dark.</li>
+                        <li>Round-the-clock support for both your loyalty card systems and NFC tech.</li>
+                        <li>Ensure your business never misses a beat.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="audience">
+            <h2 class="section-title">Who Is This For?</h2>
+            <p>Fidaro is suitable for a wide range of businesses. Whether you want to offer free products, discounts, or exclusive perks, our system helps you turn occasional visitors into loyal customers.</p>
+            <div class="tags">
+                <div class="tag">☕ Coffee Shops</div>
+                <div class="tag">✂️ Men's Salons</div>
+                <div class="tag">💅 Women's Salons</div>
+                <div class="tag">🍽️ Restaurants</div>
+                <div class="tag">🏋️ Gyms</div>
+            </div>
+        </section>
+
+        <footer>
+            <h2>Start building customer loyalty the modern way.</h2>
+            <a href="mailto:contact@fidaro.com" class="cta-button">Get Started Today</a>
+            <p style="margin-top: 40px; font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Fidaro. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div class="lang-content content-fr">
+        <section class="hero">
+            <h1>VOUS VOULEZ PLUS DE CLIENTS ?</h1>
+            <p>Chez Fidaro, nous aidons les entreprises à nouer des relations plus solides avec leurs clients grâce à des solutions de fidélité numériques et intelligentes. Nous pensons que la fidélité doit être simple, tant pour les entreprises que pour leurs clients.</p>
+            <div class="swipe-indicator">
+                <a href="#services-fr">👇 Faites glisser pour voir nos services 👇</a>
+            </div>
+        </section>
+
+        <section id="services-fr" class="services">
+            <h2 class="section-title">Nos Solutions</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>📱 Cartes de Fidélité Numériques</h3>
+                    <ul>
+                        <li>Remplace les cartes en papier traditionnelles par un système moderne intégré à Apple Wallet.</li>
+                        <li>Les clients stockent leurs cartes sur leur téléphone ; vous les récompensez instantanément en scannant un code.</li>
+                        <li>Les visites se transforment en « tampons » pour un suivi de la progression en temps réel.</li>
+                        <li>Fini les cartes perdues et le suivi manuel.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔗 Réseaux Sociaux via NFC</h3>
+                    <ul>
+                        <li>Connectez instantanément vos clients en magasin à votre présence numérique.</li>
+                        <li>La technologie NFC personnalisée permet aux clients d'accéder à vos profils sociaux d'un simple geste.</li>
+                        <li>Développez votre audience en ligne directement depuis votre point de vente.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎧 Support Premium 24/7</h3>
+                    <ul>
+                        <li>Vous n'êtes jamais laissé à l'abandon.</li>
+                        <li>Une assistance 24h/24 et 7j/7 pour vos systèmes de cartes de fidélité et votre technologie NFC.</li>
+                        <li>Assurez-vous que votre entreprise ne manque jamais une opportunité.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="audience">
+            <h2 class="section-title">Pour Qui ?</h2>
+            <p>Fidaro s'adapte à un large éventail d'entreprises. Que vous souhaitiez offrir des produits gratuits, des réductions ou des avantages exclusifs, notre système vous aide à transformer des visiteurs occasionnels en clients fidèles.</p>
+            <div class="tags">
+                <div class="tag">☕ Cafés</div>
+                <div class="tag">✂️ Salons pour Hommes</div>
+                <div class="tag">💅 Salons pour Femmes</div>
+                <div class="tag">🍽️ Restaurants</div>
+                <div class="tag">🏋️ Salles de Sport</div>
+            </div>
+        </section>
+
+        <footer>
+            <h2>Commencez à fidéliser vos clients de manière moderne.</h2>
+            <a href="mailto:contact@fidaro.com" class="cta-button">Commencez Dès Aujourd'hui</a>
+            <p style="margin-top: 40px; font-size: 0.9rem; color: var(--text-muted);">&copy; 2026 Fidaro. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            // Hide all language content
+            const allContent = document.querySelectorAll('.lang-content');
+            allContent.forEach(el => el.style.display = 'none');
+            
+            // Show selected language content
+            const selectedContent = document.querySelectorAll(`.content-${lang}`);
+            selectedContent.forEach(el => el.style.display = 'block');
+            
+            // Update button active states
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-fr').classList.remove('active');
+            document.getElementById(`btn-${lang}`).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
